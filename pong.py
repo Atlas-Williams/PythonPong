@@ -119,12 +119,17 @@ while True:
             score_a += 1
             score.clear()
             score.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
-            ball.dx *= -1 * ball_speed_scale_factor
+            ball.dx=1
+            ball.dy=1
         if ball.xcor() < (width/-2)+ball_size:
             ball.goto(0,0)
             score_b += 1
             score.clear()
             score.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
-            ball.dx *= -1 * ball_speed_scale_factor
+            ball.dx=1
+            ball.dy=1
         #paddle and ball collisions
-        
+        if ball.xcor() > .44*width and (ball.ycor() < paddleB.ycor() + height/12 and ball.ycor() > paddleB.ycor() - height/50):
+            ball.dx *= -1
+        if ball.xcor() < -.44*width and (ball.ycor() < paddleA.ycor() + height/12 and ball.ycor() > paddleA.ycor() - height/50):
+            ball.dx *= -1
